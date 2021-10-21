@@ -10,7 +10,7 @@ jobs:
         steps:
             - uses: actions/checkout@v2
             - name: Setup Node.js environment
-              uses: actions/setup-node@v2.1.2
+              uses: actions/setup-node@v2.4.1
               with:
                   node-version: '14'
             - run: npm init -y
@@ -20,3 +20,8 @@ jobs:
             - run: echo 'import { parse, HTMLElement } from "node-html-parser";console.log({ parse, HTMLElement });' > test.ts
             - run: npx esbuild test.ts --bundle --outfile=test.js
             - run: node test.js
+            - name: Archive production artifacts
+              uses: actions/upload-artifact@v2
+              with:
+                  name: dist
+                  path: test.js
