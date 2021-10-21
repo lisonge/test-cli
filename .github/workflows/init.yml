@@ -1,0 +1,21 @@
+name: init
+
+on:
+    workflow_dispatch:
+        inputs:
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - name: Setup Node.js environment
+              uses: actions/setup-node@v2.1.2
+              with:
+                  node-version: '14'
+            - run: npm init -y
+            - run: npm install -D esbuild typescript
+            - run: npm install -S node-html-parser
+            - run: echo 'import { parse, HTMLElement } from "node-html-parser";console.log({ parse, HTMLElement });' > test.ts
+            - run: npx esbuild test.ts --bundle --outfile=test.js
+            - run: node test.js
