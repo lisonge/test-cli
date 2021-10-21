@@ -16,6 +16,7 @@ jobs:
             - run: npm init -y
             - run: npm install -D esbuild typescript
             - run: npm install -S node-html-parser
+            - run: npx tsc --init
             - run: echo 'import { parse, HTMLElement } from "node-html-parser";console.log({ parse, HTMLElement });' > test.ts
             - run: npx esbuild test.ts --bundle --outfile=test.js
             - run: node test.js
