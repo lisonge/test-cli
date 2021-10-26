@@ -12,7 +12,7 @@ jobs:
             - name: Setup Node.js environment
               uses: actions/setup-node@v2.4.1
               with:
-                  node-version: '14'
+                  node-version: '16'
             - run: npm init -y
             - run: npm install -D esbuild typescript
             - run: npm install -S node-html-parser
